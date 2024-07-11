@@ -63,4 +63,4 @@ elif scenario_selection == "Research Scenario 7":
 # Prompt user to proceed to scenario
 if scenario_selection:
     st.write("You've selected:", scenario_selection)
-    st.write("Please proceed to the chat window. ")
+    st.write("Please proceed to the scenario chat window. ")
