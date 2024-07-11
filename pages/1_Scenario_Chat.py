@@ -78,7 +78,7 @@ if prompt := st.chat_input("Ask the supervisor questions", disabled = st.session
             st.markdown(prompt)
 
         with st.chat_message("assistant"):
-            message_with_system_prompt = [{"role": "system", "content": f"Just repeat these words as closely as possible, but fix the formatting. You may add paragraph breaks where logical: {st.session_state["cutoff"]}"}]
+            message_with_system_prompt = [{"role": "system", "content": f"Just repeat these words as closely as possible, but fix the formatting. You may add paragraph breaks where logical: {st.session_state['cutoff']}"}]
 
             stream = client.chat.completions.create(
                     model = st.session_state["openai_model"],
