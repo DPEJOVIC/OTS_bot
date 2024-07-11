@@ -10,6 +10,11 @@ def clearhistory():
         st.session_state["chat_history"] = []
     st.session_state["chat_history"] = []
 
+    # Initialise response counter
+    if "response_counter" not in st.session_state:
+        st.session_state.response_counter = 0
+    st.session_state["response_counter"] = 0
+
 
 # Allow the user to select a scenario.
 scenario_selection = st.selectbox(
