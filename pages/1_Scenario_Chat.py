@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 
-st.title("Chat")
+st.title("Scenario Chat")
 
 
 # Set up  system prompt
