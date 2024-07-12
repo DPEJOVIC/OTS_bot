@@ -56,7 +56,7 @@ if not st.session_state["system_prompt"]:
 if prompt := st.chat_input("Ask the supervisor questions", disabled = st.session_state.response_counter >= 5):
     st.session_state.chat_history.append({"role": "user", "content": prompt})
 
-    st.write(st.session_state["response_counter"])
+    # st.write(st.session_state["response_counter"])
 
     if st.session_state.response_counter < 5:
     
