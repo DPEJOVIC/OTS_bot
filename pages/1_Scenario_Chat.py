@@ -47,9 +47,16 @@ for message in st.session_state.chat_history:
         st.markdown(message["content"])
 
 
+if not st.session_state["system_prompt"]:
+    st.write("Please select a scenario from the Home page.")
+    st.stop()
+
+
 # Chat logic
 if prompt := st.chat_input("Ask the supervisor questions", disabled = st.session_state.response_counter >= 5):
     st.session_state.chat_history.append({"role": "user", "content": prompt})
+
+    st.write(st.session_state["response_counter"])
 
     if st.session_state.response_counter < 5:
     
