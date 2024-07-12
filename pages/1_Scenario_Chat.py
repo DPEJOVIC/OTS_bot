@@ -16,6 +16,11 @@ if "system_prompt" not in st.session_state:
     st.session_state["system_prompt"] = ""
 
 
+if not st.session_state["system_prompt"]:
+    st.write("Please select a scenario from the Home page.")
+    st.stop()
+
+
 # Set up OpenAI API client
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
@@ -36,6 +41,13 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 
+if not st.session_state["chat_history"]:
+    greeting = """Hi, I am AI-Chris, a simulated plant manager of the facility containing the 3-phase separator. I am here to help guide you through a root cause analysis of the process safety incident. We take a 'no blame culture' to incident investigation, to help facilitate understanding of the incident (rather than apportion blame).
+
+Lets talk about the process safety incident. What did you notice initially during the simulation?"""
+    st.session_state.chat_history = [{"role": "assistant", "content": greeting}]
+
+
 # Initialise response counter
 if "response_counter" not in st.session_state:
     st.session_state.response_counter = 0
@@ -47,18 +59,13 @@ for message in st.session_state.chat_history:
         st.markdown(message["content"])
 
 
-if not st.session_state["system_prompt"]:
-    st.write("Please select a scenario from the Home page.")
-    st.stop()
-
-
 # Chat logic
-if prompt := st.chat_input("Ask the supervisor questions", disabled = st.session_state.response_counter >= 5):
+if prompt := st.chat_input("Ask the supervisor questions", disabled = st.session_state.response_counter >= 6):
     st.session_state.chat_history.append({"role": "user", "content": prompt})
 
     # st.write(st.session_state["response_counter"])
 
-    if st.session_state.response_counter < 5:
+    if st.session_state.response_counter < 6:
     
         with st.chat_message("user"):
             st.markdown(prompt)
